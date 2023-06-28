@@ -4,59 +4,63 @@ import ListaSuspensa from '../ListaSuspensa';
 import Button from '../Button';
 import { useState } from 'react';
 
-const Formulario = () => {
+const Formulario = (props) => {
+  
   const gatos = ['Adulto', 'Filhote', 'Idoso'];
 
   const [nome, setNome] = useState('');
   const [idade, setIdade] = useState('');
-  const [endereco, setEndereco] = useState('');
-  const [fone, setFone] = useState('');
+  const [perso, setPerso] = useState('');
+  const [time, setTime] = useState('');
   const [gato, setGato] = useState('');
 
   const aoSalvar = () => {
     evento.preventDefault();
-    console.log('Form foi submetido =>', nome, idade, endereco, fone, gato);
+
+    props.aoGatinhoCadastrado({ nome, idade, perso, time, gato });
+
+    console.log('Form foi submetido =>', nome, idade, perso, time, gato);
   };
 
   return (
     <section className="formulario">
       <form onSubmit={aoSalvar}>
-        <h2>Preencha os dados para adotar um gatinho!</h2>
+        <h2>Preencha os dados para adicionar um gatinho!</h2>
         <CampoTexto
           obrigatorio={true}
           label="Nome:"
-          placeholder="Digite seu nome"
+          placeholder="Digite o nome do gatinho"
           valor={nome}
           aoAlterado={(valor) => setNome(valor)}
         />
         <CampoTexto
           obrigatorio={true}
           label="Idade:"
-          placeholder="Digite sua idade"
+          placeholder="Digite a idade do gatinho"
           valor={idade}
           aoAlterado={(valor) => setIdade(valor)}
         />
         <CampoTexto
-          label="Endereço:"
-          placeholder="Digite seu endereço"
-          valor={endereco}
-          aoAlterado={(valor) => setEndereco(valor)}
+          label="Personalidade:"
+          placeholder="Digite a personalidade do gatinho"
+          valor={perso}
+          aoAlterado={(valor) => setPerso(valor)}
         />
         <CampoTexto
           obrigatorio={true}
-          label="Whatsapp:"
-          placeholder="Digite seu número de celular"
-          valor={fone}
-          aoAlterado={(valor) => setFone(valor)}
+          label="Quanto tempo está no abrigo:"
+          placeholder=" "
+          valor={time}
+          aoAlterado={(valor) => setTime(valor)}
         />
         <ListaSuspensa
           obrigatorio={true}
-          label="Escolha seu gatinho:"
+          label="Escolha o grupo:"
           itens={gatos}
           valor={gato}
           aoAlterado={(valor) => setGato(valor)}
         />
-        <Button> Adotar </Button>
+        <Button> Adicionar </Button>
       </form>
     </section>
   );
