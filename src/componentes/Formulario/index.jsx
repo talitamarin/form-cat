@@ -5,9 +5,6 @@ import Button from '../Button';
 import { useState } from 'react';
 
 const Formulario = (props) => {
-  
-  const gatos = ['Adulto', 'Filhote', 'Idoso'];
-
   const [nome, setNome] = useState('');
   const [idade, setIdade] = useState('');
   const [perso, setPerso] = useState('');
@@ -56,7 +53,7 @@ const Formulario = (props) => {
         <ListaSuspensa
           obrigatorio={true}
           label="Escolha o grupo:"
-          itens={gatos}
+          itens={props.gatos}
           valor={gato}
           aoAlterado={(valor) => setGato(valor)}
         />
